@@ -1,0 +1,52 @@
+basePath: '{{.BasePath}}'
+definitions:
+  dto.MandatoryRequestV2Dto:
+    properties:
+      Accept-Language:
+        type: string
+      X-Username:
+        type: string
+    required:
+    - Accept-Language
+    - X-Username
+    type: object
+  healthcheck.CheckResponseDto:
+    type: object
+host: '{{.Host}}'
+info:
+  contact: {}
+  description: '{{.Description}}'
+  license: {}
+  title: '{{.Title}}'
+  version: '{{.Version}}'
+paths:
+  /application/health:
+    get:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: guest
+        description: guest
+        in: header
+        name: X-Username
+        required: true
+        type: string
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/healthcheck.CheckResponseDto'
+            type: object
+      summary: Healthcheck
+      tags:
+      - healthcheck-controller
+swagger: "2.0"

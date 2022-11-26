@@ -1,0 +1,76 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "{{.Description}}",
+        "title": "{{.Title}}",
+        "contact": {},
+        "license": {},
+        "version": "{{.Version}}"
+    },
+    "host": "{{.Host}}",
+    "basePath": "{{.BasePath}}",
+    "paths": {
+        "/application/health": {
+            "get": {
+                "description": "Put all mandatory parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "healthcheck-controller"
+                ],
+                "summary": "Healthcheck",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "guest",
+                        "name": "X-Username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "EN",
+                        "description": "EN",
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/healthcheck.CheckResponseDto"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dto.MandatoryRequestV2Dto": {
+            "type": "object",
+            "required": [
+                "Accept-Language",
+                "X-Username"
+            ],
+            "properties": {
+                "Accept-Language": {
+                    "type": "string"
+                },
+                "X-Username": {
+                    "type": "string"
+                }
+            }
+        },
+        "healthcheck.CheckResponseDto": {
+            "type": "object"
+        }
+    }
+}
