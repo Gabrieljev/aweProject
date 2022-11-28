@@ -9,12 +9,11 @@ import (
 
 type (
 	ViewService interface {
+		FindBookByPubId(ctx context.Context, pubId int) (books []shopping.BookDto, err error)
 
-		// - healthcheck-check-start
-		FindBookByPubId(ctx context.Context,pubId int) (books []shopping.BookDto, err error)
-		// - healthcheck-check-end
+		BulkCreateBook(ctx context.Context, bookReqs []shopping.CreateBookReq) (err error)
 
-		// - healthcheck-view-service-end
+		// - shopping-view-service-end
 	}
 
 	service struct {

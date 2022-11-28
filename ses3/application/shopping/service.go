@@ -4,7 +4,7 @@ import "github.com/geb/aweproj/ses3/shared"
 
 type (
 	Service interface {
-		InsertBook() error
+		CreateBook(book []Book) error
 		FindBookByPubId(pubId int) (books []Book, err error)
 		UpdateBook() error
 		DeleteBook() error

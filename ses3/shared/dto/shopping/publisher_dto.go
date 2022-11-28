@@ -2,8 +2,8 @@ package shopping
 
 type (
 	PublisherDto struct {
-		ID        int `json:"id"`
+		ID        int    `json:"id,omitempty"`
 		Name      string `json:"name"`
-		CountryId int `json:"countryId"`
+		CountryId int    `json:"countryId"`
 	}
 )

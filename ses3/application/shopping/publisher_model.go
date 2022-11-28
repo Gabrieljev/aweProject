@@ -2,9 +2,9 @@ package shopping
 
 type (
 	Publisher struct {
-		ID        uint `gorm:"primaryKey"`
+		ID        int `gorm:"primaryKey"`
 		Name      string
-		CountryId uint `gorm:"column:country_id"`
+		CountryId int `gorm:"column:country_id"`
 	}
 )
 

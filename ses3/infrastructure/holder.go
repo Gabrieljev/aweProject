@@ -47,7 +47,10 @@ func (h *Holder) ListenHttp() {
 	// - healthcheck-check-http-end
 
 	// - shopping-http-start
-	h.SharedHolder.Echo.GET("/shopping/book/:pubId", h.ShoppingController.FindBookByPubId)
+
+	h.SharedHolder.Echo.GET("/shopping/book/find/:pubId", h.ShoppingController.FindBookByPubId)
+	h.SharedHolder.Echo.POST("/shopping/book/bulk/create", h.ShoppingController.BulkCreateBook)
+
 	// - shopping-http-end
 
 	if err := h.SharedHolder.Echo.Start(fmt.Sprintf(":%d", h.SharedHolder.Config.EchoServerPort)); err != nil {

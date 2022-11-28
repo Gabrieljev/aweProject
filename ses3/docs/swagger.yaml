@@ -12,6 +12,13 @@ definitions:
     type: object
   healthcheck.CheckResponseDto:
     type: object
+  shopping.BookBulkReq:
+    properties:
+      books:
+        items:
+          $ref: '#/definitions/shopping.CreateBookReq'
+        type: array
+    type: object
   shopping.BookDto:
     properties:
       author:
@@ -21,6 +28,15 @@ definitions:
       publisher:
         $ref: '#/definitions/shopping.PublisherDto'
         type: object
+      title:
+        type: string
+    type: object
+  shopping.CreateBookReq:
+    properties:
+      author:
+        type: string
+      pubId:
+        type: integer
       title:
         type: string
     type: object
@@ -70,7 +86,39 @@ paths:
       summary: Healthcheck
       tags:
       - healthcheck-controller
-  /shopping/book/{pubId}:
+  /shopping/book/bulk/create:
+    post:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: guest
+        description: guest
+        in: header
+        name: X-Username
+        required: true
+        type: string
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      - description: BulkBookRequest
+        in: body
+        name: BookDto
+        required: true
+        schema:
+          $ref: '#/definitions/shopping.BookBulkReq'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200": {}
+      summary: Shopping
+      tags:
+      - shopping-controller
+  /shopping/book/find/{pubId}:
     get:
       consumes:
       - application/json
