@@ -13,6 +13,7 @@ import (
 	swagger "github.com/swaggo/echo-swagger"
 
 	healthcheck_http "github.com/geb/aweproj/ses3/infrastructure/healthcheck"
+	shopping_http "github.com/geb/aweproj/ses3/infrastructure/shopping"
 )
 
 type (
@@ -23,8 +24,11 @@ type (
 		HealthcheckController *healthcheck_http.Controller
 		// - healthcheck-http-end
 
-		SharedHolder     shared.Holder
+		// - shopping-http-start
+		ShoppingController *shopping_http.Controller
+		// - shopping-http-end
 
+		SharedHolder shared.Holder
 
 		// - infrastructure-end
 	}
@@ -36,13 +40,15 @@ func (h *Holder) ListenMessaging() {
 
 func (h *Holder) ListenHttp() {
 
-
 	h.SharedHolder.Echo.GET("/swagger/*", swagger.WrapHandler)
-
 
 	// - healthcheck-check-http-start
 	h.SharedHolder.Echo.GET("/application/health", h.HealthcheckController.Check)
 	// - healthcheck-check-http-end
+
+	// - shopping-http-start
+	h.SharedHolder.Echo.GET("/shopping/book/:pubId", h.ShoppingController.FindBookByPubId)
+	// - shopping-http-end
 
 	if err := h.SharedHolder.Echo.Start(fmt.Sprintf(":%d", h.SharedHolder.Config.EchoServerPort)); err != nil {
 		if err.Error() == "http: Server closed" {
@@ -55,4 +61,3 @@ func (h *Holder) ListenHttp() {
 	// - http-end
 
 }
-

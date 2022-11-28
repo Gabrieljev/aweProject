@@ -2,20 +2,23 @@
 package interfaces
 
 import (
+	"github.com/geb/aweproj/ses3/interfaces/shopping"
 	"go.uber.org/dig"
 
 	"github.com/geb/aweproj/ses3/interfaces/healthcheck"
-
 )
 
 type (
 	Holder struct {
 		dig.In
 
-
 		// - Healthcheck-view-service-start
-		HealthcheckViewService healthcheck.ViewService
+		HealthCheckViewService healthcheck.ViewService
 		// - Healthcheck-view-service-end
+
+		// - Shopping-view-service-start
+		ShoppingViewService shopping.ViewService
+		// - Shopping-view-service-end
 
 		// interfaces-view-service-end
 	}

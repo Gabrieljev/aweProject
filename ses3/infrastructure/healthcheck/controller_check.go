@@ -23,7 +23,7 @@ func (c *Controller) Check(ec echo.Context) error {
 		request healthcheck_dto.CheckRequestDto
 	)
 
-	response, err := c.InterfacesHolder.HealthcheckViewService.Check(ctx, request)
+	response, err := c.InterfacesHolder.HealthCheckViewService.Check(ctx, request)
 
 	if err != nil {
 		return sh.Response(ec, nil, sh.New(sh.BAD_REQUEST, err))

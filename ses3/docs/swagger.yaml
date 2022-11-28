@@ -12,6 +12,27 @@ definitions:
     type: object
   healthcheck.CheckResponseDto:
     type: object
+  shopping.BookDto:
+    properties:
+      author:
+        type: string
+      id:
+        type: integer
+      publisher:
+        $ref: '#/definitions/shopping.PublisherDto'
+        type: object
+      title:
+        type: string
+    type: object
+  shopping.PublisherDto:
+    properties:
+      countryId:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
 host: '{{.Host}}'
 info:
   contact: {}
@@ -49,4 +70,39 @@ paths:
       summary: Healthcheck
       tags:
       - healthcheck-controller
+  /shopping/book/{pubId}:
+    get:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: guest
+        description: guest
+        in: header
+        name: X-Username
+        required: true
+        type: string
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      - default: "1"
+        description: publisherId
+        in: path
+        name: pubId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/shopping.BookDto'
+            type: object
+      summary: Shopping
+      tags:
+      - shopping-controller
 swagger: "2.0"

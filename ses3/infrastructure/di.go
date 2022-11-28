@@ -4,8 +4,8 @@ package infrastructure
 import (
 	"github.com/pkg/errors"
 
-
 	healthcheck_http "github.com/geb/aweproj/ses3/infrastructure/healthcheck"
+	shopping_http "github.com/geb/aweproj/ses3/infrastructure/shopping"
 
 	"go.uber.org/dig"
 )
@@ -18,6 +18,11 @@ func Register(container *dig.Container) error {
 	}
 	// - healthcheck-http-end
 
+	// - shopping-http-start
+	if err := container.Provide(shopping_http.NewController); err != nil {
+		return errors.Wrap(err, "failed to provide healthcheck controller")
+	}
+	// - shopping-http-end
 
 	// - infrastructure-di-end
 	return nil
