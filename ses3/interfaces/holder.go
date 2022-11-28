@@ -2,7 +2,7 @@
 package interfaces
 
 import (
-	"github.com/geb/aweproj/ses3/interfaces/shopping"
+	"github.com/geb/aweproj/ses3/interfaces/inventory"
 	"go.uber.org/dig"
 
 	"github.com/geb/aweproj/ses3/interfaces/healthcheck"
@@ -16,9 +16,9 @@ type (
 		HealthCheckViewService healthcheck.ViewService
 		// - Healthcheck-view-service-end
 
-		// - Shopping-view-service-start
-		ShoppingViewService shopping.ViewService
-		// - Shopping-view-service-end
+		// - Inventory-view-service-start
+		InventoryViewService inventory.ViewService
+		// - Inventory-view-service-end
 
 		// interfaces-view-service-end
 	}

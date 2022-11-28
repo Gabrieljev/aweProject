@@ -12,26 +12,26 @@ definitions:
     type: object
   healthcheck.CheckResponseDto:
     type: object
-  shopping.BookBulkReq:
+  inventory.BookBulkReq:
     properties:
       books:
         items:
-          $ref: '#/definitions/shopping.CreateBookReq'
+          $ref: '#/definitions/inventory.CreateBookReq'
         type: array
     type: object
-  shopping.BookDto:
+  inventory.BookDto:
     properties:
       author:
         type: string
       id:
         type: integer
       publisher:
-        $ref: '#/definitions/shopping.PublisherDto'
+        $ref: '#/definitions/inventory.PublisherDto'
         type: object
       title:
         type: string
     type: object
-  shopping.CreateBookReq:
+  inventory.CreateBookReq:
     properties:
       author:
         type: string
@@ -40,7 +40,7 @@ definitions:
       title:
         type: string
     type: object
-  shopping.PublisherDto:
+  inventory.PublisherDto:
     properties:
       countryId:
         type: integer
@@ -86,7 +86,7 @@ paths:
       summary: Healthcheck
       tags:
       - healthcheck-controller
-  /shopping/book/bulk/create:
+  /inventory/book/bulk/create:
     post:
       consumes:
       - application/json
@@ -109,16 +109,16 @@ paths:
         name: BookDto
         required: true
         schema:
-          $ref: '#/definitions/shopping.BookBulkReq'
+          $ref: '#/definitions/inventory.BookBulkReq'
           type: object
       produces:
       - application/json
       responses:
         "200": {}
-      summary: Shopping
+      summary: Inventory
       tags:
-      - shopping-controller
-  /shopping/book/find/{pubId}:
+      - inventory-controller
+  /inventory/book/find/{pubId}:
     get:
       consumes:
       - application/json
@@ -148,9 +148,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/shopping.BookDto'
+            $ref: '#/definitions/inventory.BookDto'
             type: object
-      summary: Shopping
+      summary: Inventory
       tags:
-      - shopping-controller
+      - inventory-controller
 swagger: "2.0"

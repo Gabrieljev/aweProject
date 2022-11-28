@@ -2,12 +2,9 @@
 package application
 
 import (
-	"github.com/geb/aweproj/ses3/application/shopping"
+	"github.com/geb/aweproj/ses3/application/inventory"
 	"github.com/pkg/errors"
-
 	"github.com/geb/aweproj/ses3/application/healthcheck"
-
-
 	"go.uber.org/dig"
 )
 
@@ -20,11 +17,11 @@ func Register(container *dig.Container) error {
 	}
 	// - healthcheck-domain-end
 
-	// - shopping-domain-start
-	if err := container.Provide(shopping.NewService); err != nil {
+	// - inventory-domain-start
+	if err := container.Provide(inventory.NewService); err != nil {
 		return errors.Wrap(err, "failed to provide healthcheck app service")
 	}
-	// - shopping-domain-end
+	// - inventory-domain-end
 
 	// application-di-end
 

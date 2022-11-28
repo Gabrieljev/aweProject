@@ -1,4 +1,4 @@
-package shopping
+package inventory
 
 import (
 	"context"
@@ -8,16 +8,16 @@ import (
 )
 
 // All godoc
-// @Tags shopping-controller
-// @Summary Shopping
+// @Tags inventory-controller
+// @Summary Inventory
 // @Description Put all mandatory parameter
 // @Param X-Username header string true "guest" default(guest)
 // @Param Accept-Language header string true "EN" default(EN)
 // @Param pubId path string true "publisherId" default(1)
 // @Accept json
 // @Produce json
-// @Success 200 {object} shopping.BookDto
-// @Router /shopping/book/find/{pubId} [get]
+// @Success 200 {object} inventory.BookDto
+// @Router /inventory/book/find/{pubId} [get]
 func (c *Controller) FindBookByPubId(ec echo.Context) error {
 	var (
 		ctx      = context.Background()
@@ -28,7 +28,7 @@ func (c *Controller) FindBookByPubId(ec echo.Context) error {
 		return sh.Response(ec, nil, sh.New(sh.BAD_REQUEST, err))
 	}
 
-	response, err := c.InterfacesHolder.ShoppingViewService.FindBookByPubId(ctx, pubId)
+	response, err := c.InterfacesHolder.InventoryViewService.FindBookByPubId(ctx, pubId)
 
 	if err != nil {
 		return sh.Response(ec, nil, sh.New(sh.BAD_REQUEST, err))

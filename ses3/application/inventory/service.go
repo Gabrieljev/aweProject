@@ -1,4 +1,4 @@
-package shopping
+package inventory
 
 import "github.com/geb/aweproj/ses3/shared"
 

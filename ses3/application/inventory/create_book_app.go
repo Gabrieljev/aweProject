@@ -1,4 +1,4 @@
-package shopping
+package inventory
 
 func (s *service) CreateBook(book []Book) error {
 	tx := s.SharedHolder.DB.Begin()

@@ -1,4 +1,4 @@
-package shopping
+package inventory
 
 type (
 	BookBulkReq struct {

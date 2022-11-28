@@ -1,4 +1,4 @@
-package shopping
+package inventory
 
 func (s *service) FindBookByPubId(pubId int) (books []Book, err error) {
 

@@ -52,7 +52,7 @@
                 }
             }
         },
-        "/shopping/book/bulk/create": {
+        "/inventory/book/bulk/create": {
             "post": {
                 "description": "Put all mandatory parameter",
                 "consumes": [
@@ -62,9 +62,9 @@
                     "application/json"
                 ],
                 "tags": [
-                    "shopping-controller"
+                    "inventory-controller"
                 ],
-                "summary": "Shopping",
+                "summary": "Inventory",
                 "parameters": [
                     {
                         "type": "string",
@@ -89,7 +89,7 @@
                         "required": true,
                         "schema": {
                             "type": "object",
-                            "$ref": "#/definitions/shopping.BookBulkReq"
+                            "$ref": "#/definitions/inventory.BookBulkReq"
                         }
                     }
                 ],
@@ -98,7 +98,7 @@
                 }
             }
         },
-        "/shopping/book/find/{pubId}": {
+        "/inventory/book/find/{pubId}": {
             "get": {
                 "description": "Put all mandatory parameter",
                 "consumes": [
@@ -108,9 +108,9 @@
                     "application/json"
                 ],
                 "tags": [
-                    "shopping-controller"
+                    "inventory-controller"
                 ],
-                "summary": "Shopping",
+                "summary": "Inventory",
                 "parameters": [
                     {
                         "type": "string",
@@ -142,7 +142,7 @@
                         "description": "OK",
                         "schema": {
                             "type": "object",
-                            "$ref": "#/definitions/shopping.BookDto"
+                            "$ref": "#/definitions/inventory.BookDto"
                         }
                     }
                 }
@@ -168,18 +168,18 @@
         "healthcheck.CheckResponseDto": {
             "type": "object"
         },
-        "shopping.BookBulkReq": {
+        "inventory.BookBulkReq": {
             "type": "object",
             "properties": {
                 "books": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/shopping.CreateBookReq"
+                        "$ref": "#/definitions/inventory.CreateBookReq"
                     }
                 }
             }
         },
-        "shopping.BookDto": {
+        "inventory.BookDto": {
             "type": "object",
             "properties": {
                 "author": {
@@ -190,14 +190,14 @@
                 },
                 "publisher": {
                     "type": "object",
-                    "$ref": "#/definitions/shopping.PublisherDto"
+                    "$ref": "#/definitions/inventory.PublisherDto"
                 },
                 "title": {
                     "type": "string"
                 }
             }
         },
-        "shopping.CreateBookReq": {
+        "inventory.CreateBookReq": {
             "type": "object",
             "properties": {
                 "author": {
@@ -211,7 +211,7 @@
                 }
             }
         },
-        "shopping.PublisherDto": {
+        "inventory.PublisherDto": {
             "type": "object",
             "properties": {
                 "countryId": {

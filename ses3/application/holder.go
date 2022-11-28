@@ -2,7 +2,7 @@
 package application
 
 import (
-	"github.com/geb/aweproj/ses3/application/shopping"
+	"github.com/geb/aweproj/ses3/application/inventory"
 	"go.uber.org/dig"
 
 	"github.com/geb/aweproj/ses3/application/healthcheck"
@@ -17,9 +17,9 @@ type (
 		HealthCheckService healthcheck.Service
 		// - healthcheck-domain-end
 
-		// - shopping-domain-start
-		Shopping shopping.Service
-		// - shopping-domain-end
+		// - inventory-domain-start
+		Inventory inventory.Service
+		// - inventory-domain-end
 		
 		// - application-holder-end
 	}

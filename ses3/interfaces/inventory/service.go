@@ -1,19 +1,19 @@
-package shopping
+package inventory
 
 import (
 	"context"
 	"github.com/geb/aweproj/ses3/application"
 	"github.com/geb/aweproj/ses3/shared"
-	"github.com/geb/aweproj/ses3/shared/dto/shopping"
+	"github.com/geb/aweproj/ses3/shared/dto/inventory"
 )
 
 type (
 	ViewService interface {
-		FindBookByPubId(ctx context.Context, pubId int) (books []shopping.BookDto, err error)
+		FindBookByPubId(ctx context.Context, pubId int) (books []inventory.BookDto, err error)
 
-		BulkCreateBook(ctx context.Context, bookReqs []shopping.CreateBookReq) (err error)
+		BulkCreateBook(ctx context.Context, bookReqs []inventory.CreateBookReq) (err error)
 
-		// - shopping-view-service-end
+		// - inventory-view-service-end
 	}
 
 	service struct {
