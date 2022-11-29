@@ -1,8 +1,10 @@
 package inventory
 
+import "gorm.io/gorm"
+
 type (
 	Publisher struct {
-		ID        int `gorm:"primaryKey"`
+		gorm.Model
 		Name      string
 		CountryId int `gorm:"column:country_id"`
 	}

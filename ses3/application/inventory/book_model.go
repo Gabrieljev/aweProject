@@ -1,8 +1,10 @@
 package inventory
 
+import "gorm.io/gorm"
+
 type (
 	Book struct {
-		ID        int `gorm:"primaryKey"`
+		gorm.Model
 		Title     string
 		Author    string
 		PubId     int       `gorm:"column:pub_id"`
