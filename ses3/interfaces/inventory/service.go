@@ -11,7 +11,9 @@ type (
 	ViewService interface {
 		FindBookByPubId(ctx context.Context, pubId int) (books []inventory.BookDto, err error)
 
-		BulkCreateBook(ctx context.Context, bookReqs []inventory.CreateBookReq) (err error)
+		BulkCreateBook(ctx context.Context, bookReqs []inventory.BookReq) (err error)
+
+		UpdateBook(ctx context.Context,id int, bookReqs inventory.BookReq) (err error)
 
 		// - inventory-view-service-end
 	}

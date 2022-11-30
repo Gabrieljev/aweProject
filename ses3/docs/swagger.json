@@ -98,6 +98,59 @@
                 }
             }
         },
+        "/inventory/book/bulk/update/{id}": {
+            "put": {
+                "description": "Put all mandatory parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "inventory-controller"
+                ],
+                "summary": "Inventory",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "guest",
+                        "name": "X-Username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "EN",
+                        "description": "EN",
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "BookRequest",
+                        "name": "BookDto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/inventory.BookReq"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "objectId",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
         "/inventory/book/find/{pubId}": {
             "get": {
                 "description": "Put all mandatory parameter",
@@ -174,7 +227,7 @@
                 "books": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/inventory.CreateBookReq"
+                        "$ref": "#/definitions/inventory.BookReq"
                     }
                 }
             }
@@ -197,7 +250,7 @@
                 }
             }
         },
-        "inventory.CreateBookReq": {
+        "inventory.BookReq": {
             "type": "object",
             "properties": {
                 "author": {

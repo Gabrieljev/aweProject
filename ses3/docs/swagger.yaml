@@ -16,7 +16,7 @@ definitions:
     properties:
       books:
         items:
-          $ref: '#/definitions/inventory.CreateBookReq'
+          $ref: '#/definitions/inventory.BookReq'
         type: array
     type: object
   inventory.BookDto:
@@ -31,7 +31,7 @@ definitions:
       title:
         type: string
     type: object
-  inventory.CreateBookReq:
+  inventory.BookReq:
     properties:
       author:
         type: string
@@ -111,6 +111,43 @@ paths:
         schema:
           $ref: '#/definitions/inventory.BookBulkReq'
           type: object
+      produces:
+      - application/json
+      responses:
+        "200": {}
+      summary: Inventory
+      tags:
+      - inventory-controller
+  /inventory/book/bulk/update/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: guest
+        description: guest
+        in: header
+        name: X-Username
+        required: true
+        type: string
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      - description: BookRequest
+        in: body
+        name: BookDto
+        required: true
+        schema:
+          $ref: '#/definitions/inventory.BookReq'
+          type: object
+      - description: objectId
+        in: path
+        name: id
+        required: true
+        type: string
       produces:
       - application/json
       responses:

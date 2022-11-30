@@ -6,7 +6,7 @@ type (
 	Service interface {
 		CreateBook(book []Book) error
 		FindBookByPubId(pubId int) (books []Book, err error)
-		UpdateBook() error
+		UpdateBook(id int, book Book) error
 		DeleteBook() error
 		FindPublisher() error
 	}

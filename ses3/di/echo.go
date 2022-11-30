@@ -2,14 +2,15 @@
 package di
 
 import (
+	"github.com/geb/aweproj/ses3/shared"
 	"github.com/pkg/errors"
 
-	echo "github.com/labstack/echo/v4"
-
+	"github.com/labstack/echo/v4"
 )
 
-func NewEcho() (*echo.Echo, error) {
+func NewEcho(validator shared.Validator) (*echo.Echo, error) {
 	e := echo.New()
+	e.Validator = validator
 	return e, nil
 }
 

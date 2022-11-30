@@ -6,12 +6,12 @@ import (
 	"github.com/geb/aweproj/ses3/shared/dto/inventory"
 )
 
-func (s *service) BulkCreateBook(ctx context.Context, bookReqs []inventory.CreateBookReq) (err error) {
-	books := s.convertToBookDao(bookReqs)
+func (s *service) BulkCreateBook(ctx context.Context, bookReqs []inventory.BookReq) (err error) {
+	books := s.convertToBookDao(bookReqs...)
 	return s.ApplicationHolder.Inventory.CreateBook(books)
 }
 
-func (s *service) convertToBookDao(bookReqs []inventory.CreateBookReq) (books []inventory_dao.Book) {
+func (s *service) convertToBookDao(bookReqs ...inventory.BookReq) (books []inventory_dao.Book) {
 	books = make([]inventory_dao.Book, 0)
 	for _, v := range bookReqs {
 		books = append(books, inventory_dao.Book{

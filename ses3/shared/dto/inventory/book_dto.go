@@ -2,9 +2,9 @@ package inventory
 
 type (
 	BookBulkReq struct {
-		BookBulk []CreateBookReq `json:"books,omitempty" swaggertype:"array,object,string"`
+		BookBulk []BookReq `json:"books,omitempty" swaggertype:"array,object,string"`
 	}
-	CreateBookReq struct {
+	BookReq struct {
 		Title  string `json:"title"`
 		Author string `json:"author"`
 		PubId  int    `json:"pubId"`
