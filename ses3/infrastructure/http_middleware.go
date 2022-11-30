@@ -10,21 +10,23 @@ import (
 
 func RegisterMiddleware(h *Holder) {
 	// - register your middleware here
-	h.SharedHolder.Echo.Use(CustomMiddleware())
+	h.SharedHolder.Echo.Use(CustomMiddlewareLatency())
+	h.SharedHolder.Echo.Use(CustomMiddlewareAuth())
 
 }
 
-func CustomMiddleware() echo.MiddlewareFunc {
+func CustomMiddlewareLatency() echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(ctx echo.Context) error {
 			rw := ctx.Response().Writer
 
-			txName := fmt.Sprintf("%s [%s]", ctx.Path(), ctx.Request().Method)
-
+			txName := fmt.Sprintf("path %s method [%s]", ctx.Path(), ctx.Request().Method)
+			// before
 			startTime := time.Now()
 			err := next(ctx)
+			// after
 			latency := time.Since(startTime)
-			log.Printf("request and response %s, latency %d milliseconds", txName, latency.Milliseconds())
+			log.Printf("%s, latency %d milliseconds", txName, latency.Milliseconds())
 			if err != nil {
 				if httperr, ok := err.(*echo.HTTPError); ok {
 					rw.WriteHeader(httperr.Code)
@@ -33,6 +35,19 @@ func CustomMiddleware() echo.MiddlewareFunc {
 				}
 			}
 			return err
+		}
+	}
+}
+
+func CustomMiddlewareAuth() echo.MiddlewareFunc {
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(ctx echo.Context) (err error) {
+			userName := ctx.Request().Header.Get("X-Username")
+			// do your authentication level here
+			_ = next(ctx)
+
+			log.Printf("you are %s", userName)
+			return
 		}
 	}
 }
