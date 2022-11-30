@@ -36,6 +36,8 @@ type (
 
 func (h *Holder) ListenHttp() {
 
+	RegisterMiddleware(h)
+
 	h.SharedHolder.Echo.GET("/swagger/*", swagger.WrapHandler)
 
 	// - healthcheck-check-http-start
