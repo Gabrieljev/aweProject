@@ -48,7 +48,9 @@ func (h *Holder) ListenHttp() {
 
 	h.SharedHolder.Echo.POST("/inventory/book/bulk/create", h.InventoryController.BulkCreateBook)
 
-	h.SharedHolder.Echo.PUT("/inventory/book/bulk/update/:id", h.InventoryController.UpdateBook)
+	h.SharedHolder.Echo.PUT("/inventory/book/update/:id", h.InventoryController.UpdateBook)
+
+	h.SharedHolder.Echo.DELETE("/inventory/book/delete/:id", h.InventoryController.DeleteBook)
 
 	// - inventory-http-end
 

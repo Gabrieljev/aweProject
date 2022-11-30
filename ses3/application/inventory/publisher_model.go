@@ -7,6 +7,7 @@ type (
 		gorm.Model
 		Name      string
 		CountryId int `gorm:"column:country_id"`
+		IsDeleted int
 	}
 )
 

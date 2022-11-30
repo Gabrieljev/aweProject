@@ -15,6 +15,8 @@ type (
 
 		UpdateBook(ctx context.Context,id int, bookReqs inventory.BookReq) (err error)
 
+		DeleteBook(ctx context.Context,id int) (err error)
+
 		// - inventory-view-service-end
 	}
 

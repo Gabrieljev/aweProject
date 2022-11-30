@@ -9,6 +9,7 @@ type (
 		Author    string
 		PubId     int       `gorm:"column:pub_id"`
 		Publisher Publisher `gorm:"foreignKey:pub_id"`
+		IsDeleted int
 	}
 )
 

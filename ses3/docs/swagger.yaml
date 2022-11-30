@@ -118,8 +118,8 @@ paths:
       summary: Inventory
       tags:
       - inventory-controller
-  /inventory/book/bulk/update/{id}:
-    put:
+  /inventory/book/delete/{id}:
+    delete:
       consumes:
       - application/json
       description: Put all mandatory parameter
@@ -136,13 +136,6 @@ paths:
         name: Accept-Language
         required: true
         type: string
-      - description: BookRequest
-        in: body
-        name: BookDto
-        required: true
-        schema:
-          $ref: '#/definitions/inventory.BookReq'
-          type: object
       - description: objectId
         in: path
         name: id
@@ -187,6 +180,43 @@ paths:
           schema:
             $ref: '#/definitions/inventory.BookDto'
             type: object
+      summary: Inventory
+      tags:
+      - inventory-controller
+  /inventory/book/update/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: guest
+        description: guest
+        in: header
+        name: X-Username
+        required: true
+        type: string
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      - description: BookRequest
+        in: body
+        name: BookDto
+        required: true
+        schema:
+          $ref: '#/definitions/inventory.BookReq'
+          type: object
+      - description: objectId
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200": {}
       summary: Inventory
       tags:
       - inventory-controller

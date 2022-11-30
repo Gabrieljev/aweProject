@@ -98,8 +98,8 @@
                 }
             }
         },
-        "/inventory/book/bulk/update/{id}": {
-            "put": {
+        "/inventory/book/delete/{id}": {
+            "delete": {
                 "description": "Put all mandatory parameter",
                 "consumes": [
                     "application/json"
@@ -127,16 +127,6 @@
                         "name": "Accept-Language",
                         "in": "header",
                         "required": true
-                    },
-                    {
-                        "description": "BookRequest",
-                        "name": "BookDto",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "object",
-                            "$ref": "#/definitions/inventory.BookReq"
-                        }
                     },
                     {
                         "type": "string",
@@ -198,6 +188,59 @@
                             "$ref": "#/definitions/inventory.BookDto"
                         }
                     }
+                }
+            }
+        },
+        "/inventory/book/update/{id}": {
+            "put": {
+                "description": "Put all mandatory parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "inventory-controller"
+                ],
+                "summary": "Inventory",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "guest",
+                        "name": "X-Username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "EN",
+                        "description": "EN",
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "BookRequest",
+                        "name": "BookDto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/inventory.BookReq"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "objectId",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {}
                 }
             }
         }

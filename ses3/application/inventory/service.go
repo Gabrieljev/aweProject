@@ -7,7 +7,7 @@ type (
 		CreateBook(book []Book) error
 		FindBookByPubId(pubId int) (books []Book, err error)
 		UpdateBook(id int, book Book) error
-		DeleteBook() error
+		DeleteBookById(id int) error
 		FindPublisher() error
 	}
 	service struct {
