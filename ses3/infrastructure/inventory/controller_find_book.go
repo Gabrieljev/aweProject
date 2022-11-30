@@ -11,13 +11,13 @@ import (
 // @Tags inventory-controller
 // @Summary Inventory
 // @Description Put all mandatory parameter
-// @Param X-Username header string true "guest" default(guest)
+// @Param X-Token header string true "token" default(token)
 // @Param Accept-Language header string true "EN" default(EN)
 // @Param pubId path string true "publisherId" default(1)
 // @Accept json
 // @Produce json
 // @Success 200 {object} inventory.BookDto
-// @Router /inventory/book/find/{pubId} [get]
+// @Router /book-store/inventory/book/find/{pubId} [get]
 func (c *Controller) FindBookByPubId(ec echo.Context) error {
 	var (
 		ctx      = context.Background()

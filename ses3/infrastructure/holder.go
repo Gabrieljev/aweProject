@@ -10,10 +10,9 @@ import (
 	"fmt"
 
 	_ "github.com/geb/aweproj/ses3/docs"
-	swagger "github.com/swaggo/echo-swagger"
-
 	healthcheck_http "github.com/geb/aweproj/ses3/infrastructure/healthcheck"
 	inventory_http "github.com/geb/aweproj/ses3/infrastructure/inventory"
+	member_http "github.com/geb/aweproj/ses3/infrastructure/member"
 )
 
 type (
@@ -28,6 +27,10 @@ type (
 		InventoryController *inventory_http.Controller
 		// - inventory-http-end
 
+		// - member-http-start
+		MemberController *member_http.Controller
+		// - member-http-end
+
 		SharedHolder shared.Holder
 
 		// - infrastructure-end
@@ -36,25 +39,12 @@ type (
 
 func (h *Holder) ListenHttp() {
 
-	RegisterMiddleware(h)
+	// global middleware
+	h.SharedHolder.Echo.Use(CustomMiddlewareLatency())
 
-	h.SharedHolder.Echo.GET("/swagger/*", swagger.WrapHandler)
+	ProtectedAPI(h)
 
-	// - healthcheck-check-http-start
-	h.SharedHolder.Echo.GET("/application/health", h.HealthcheckController.Check)
-	// - healthcheck-check-http-end
-
-	// - inventory-http-start
-
-	h.SharedHolder.Echo.GET("/inventory/book/find/:pubId", h.InventoryController.FindBookByPubId)
-
-	h.SharedHolder.Echo.POST("/inventory/book/bulk/create", h.InventoryController.BulkCreateBook)
-
-	h.SharedHolder.Echo.PUT("/inventory/book/update/:id", h.InventoryController.UpdateBook)
-
-	h.SharedHolder.Echo.DELETE("/inventory/book/delete/:id", h.InventoryController.DeleteBook)
-
-	// - inventory-http-end
+	PublicAPI(h)
 
 	if err := h.SharedHolder.Echo.Start(fmt.Sprintf(":%d", h.SharedHolder.Config.EchoServerPort)); err != nil {
 		if err.Error() == "http: Server closed" {

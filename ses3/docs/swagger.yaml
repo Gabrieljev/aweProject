@@ -49,6 +49,16 @@ definitions:
       name:
         type: string
     type: object
+  member.UserReq:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
 host: '{{.Host}}'
 info:
   contact: {}
@@ -63,12 +73,6 @@ paths:
       - application/json
       description: Put all mandatory parameter
       parameters:
-      - default: guest
-        description: guest
-        in: header
-        name: X-Username
-        required: true
-        type: string
       - default: EN
         description: EN
         in: header
@@ -86,16 +90,16 @@ paths:
       summary: Healthcheck
       tags:
       - healthcheck-controller
-  /inventory/book/bulk/create:
+  /book-store/inventory/book/bulk/create:
     post:
       consumes:
       - application/json
       description: Put all mandatory parameter
       parameters:
-      - default: guest
-        description: guest
+      - default: token
+        description: token
         in: header
-        name: X-Username
+        name: X-Token
         required: true
         type: string
       - default: EN
@@ -118,16 +122,16 @@ paths:
       summary: Inventory
       tags:
       - inventory-controller
-  /inventory/book/delete/{id}:
+  /book-store/inventory/book/delete/{id}:
     delete:
       consumes:
       - application/json
       description: Put all mandatory parameter
       parameters:
-      - default: guest
-        description: guest
+      - default: token
+        description: token
         in: header
-        name: X-Username
+        name: X-Token
         required: true
         type: string
       - default: EN
@@ -148,16 +152,16 @@ paths:
       summary: Inventory
       tags:
       - inventory-controller
-  /inventory/book/find/{pubId}:
+  /book-store/inventory/book/find/{pubId}:
     get:
       consumes:
       - application/json
       description: Put all mandatory parameter
       parameters:
-      - default: guest
-        description: guest
+      - default: token
+        description: token
         in: header
-        name: X-Username
+        name: X-Token
         required: true
         type: string
       - default: EN
@@ -183,16 +187,16 @@ paths:
       summary: Inventory
       tags:
       - inventory-controller
-  /inventory/book/update/{id}:
+  /book-store/inventory/book/update/{id}:
     put:
       consumes:
       - application/json
       description: Put all mandatory parameter
       parameters:
-      - default: guest
-        description: guest
+      - default: token
+        description: token
         in: header
-        name: X-Username
+        name: X-Token
         required: true
         type: string
       - default: EN
@@ -220,4 +224,56 @@ paths:
       summary: Inventory
       tags:
       - inventory-controller
+  /book-store/member/user/create:
+    post:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      - description: UserReq
+        in: body
+        name: BookDto
+        required: true
+        schema:
+          $ref: '#/definitions/member.UserReq'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200": {}
+      summary: Member
+      tags:
+      - member-controller
+  /book-store/member/user/login:
+    post:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      - description: UserReq
+        in: body
+        name: BookDto
+        required: true
+        schema:
+          $ref: '#/definitions/member.UserReq'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200": {}
+      summary: Member
+      tags:
+      - member-controller
 swagger: "2.0"

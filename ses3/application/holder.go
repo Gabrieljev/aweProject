@@ -3,6 +3,7 @@ package application
 
 import (
 	"github.com/geb/aweproj/ses3/application/inventory"
+	"github.com/geb/aweproj/ses3/application/member"
 	"go.uber.org/dig"
 
 	"github.com/geb/aweproj/ses3/application/healthcheck"
@@ -20,7 +21,12 @@ type (
 		// - inventory-domain-start
 		Inventory inventory.Service
 		// - inventory-domain-end
-		
+
+		// - member-domain-start
+		Member member.Service
+		// - member-domain-end
+
+
 		// - application-holder-end
 	}
 )

@@ -3,6 +3,7 @@ package interfaces
 
 import (
 	"github.com/geb/aweproj/ses3/interfaces/inventory"
+	"github.com/geb/aweproj/ses3/interfaces/member"
 	"github.com/pkg/errors"
 
 	"github.com/geb/aweproj/ses3/interfaces/healthcheck"
@@ -20,9 +21,15 @@ func Register(container *dig.Container) error {
 
 	// - inventory-domain-start
 	if err := container.Provide(inventory.NewViewService); err != nil {
-		return errors.Wrap(err, "failed to provide healthcheck app service")
+		return errors.Wrap(err, "failed to provide inventory app service")
 	}
 	// - inventory-domain-end
+
+	// - member-domain-start
+	if err := container.Provide(member.NewViewService); err != nil {
+		return errors.Wrap(err, "failed to provide member app service")
+	}
+	// - member-domain-end
 
 	return nil
 }

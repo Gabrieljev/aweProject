@@ -6,6 +6,7 @@ import (
 
 	healthcheck_http "github.com/geb/aweproj/ses3/infrastructure/healthcheck"
 	inventory_http "github.com/geb/aweproj/ses3/infrastructure/inventory"
+	member_http "github.com/geb/aweproj/ses3/infrastructure/member"
 
 	"go.uber.org/dig"
 )
@@ -20,9 +21,15 @@ func Register(container *dig.Container) error {
 
 	// - inventory-http-start
 	if err := container.Provide(inventory_http.NewController); err != nil {
-		return errors.Wrap(err, "failed to provide healthcheck controller")
+		return errors.Wrap(err, "failed to provide inventory controller")
 	}
 	// - inventory-http-end
+
+	// - member-http-start
+	if err := container.Provide(member_http.NewController); err != nil {
+		return errors.Wrap(err, "failed to provide member controller")
+	}
+	// - member-http-end
 
 	// - infrastructure-di-end
 	return nil

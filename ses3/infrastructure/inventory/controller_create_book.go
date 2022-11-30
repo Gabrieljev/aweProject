@@ -11,13 +11,13 @@ import (
 // @Tags inventory-controller
 // @Summary Inventory
 // @Description Put all mandatory parameter
-// @Param X-Username header string true "guest" default(guest)
+// @Param X-Token header string true "token" default(token)
 // @Param Accept-Language header string true "EN" default(EN)
 // @Param BookDto body inventory.BookBulkReq true "BulkBookRequest"
 // @Accept json
 // @Produce json
 // @Success 200
-// @Router /inventory/book/bulk/create [post]
+// @Router /book-store/inventory/book/bulk/create [post]
 func (c *Controller) BulkCreateBook(ec echo.Context) error {
 	var (
 		ctx          = context.Background()

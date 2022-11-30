@@ -26,14 +26,6 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "default": "guest",
-                        "description": "guest",
-                        "name": "X-Username",
-                        "in": "header",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
                         "default": "EN",
                         "description": "EN",
                         "name": "Accept-Language",
@@ -52,7 +44,7 @@
                 }
             }
         },
-        "/inventory/book/bulk/create": {
+        "/book-store/inventory/book/bulk/create": {
             "post": {
                 "description": "Put all mandatory parameter",
                 "consumes": [
@@ -68,9 +60,9 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "default": "guest",
-                        "description": "guest",
-                        "name": "X-Username",
+                        "default": "token",
+                        "description": "token",
+                        "name": "X-Token",
                         "in": "header",
                         "required": true
                     },
@@ -98,7 +90,7 @@
                 }
             }
         },
-        "/inventory/book/delete/{id}": {
+        "/book-store/inventory/book/delete/{id}": {
             "delete": {
                 "description": "Put all mandatory parameter",
                 "consumes": [
@@ -114,9 +106,9 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "default": "guest",
-                        "description": "guest",
-                        "name": "X-Username",
+                        "default": "token",
+                        "description": "token",
+                        "name": "X-Token",
                         "in": "header",
                         "required": true
                     },
@@ -141,7 +133,7 @@
                 }
             }
         },
-        "/inventory/book/find/{pubId}": {
+        "/book-store/inventory/book/find/{pubId}": {
             "get": {
                 "description": "Put all mandatory parameter",
                 "consumes": [
@@ -157,9 +149,9 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "default": "guest",
-                        "description": "guest",
-                        "name": "X-Username",
+                        "default": "token",
+                        "description": "token",
+                        "name": "X-Token",
                         "in": "header",
                         "required": true
                     },
@@ -191,7 +183,7 @@
                 }
             }
         },
-        "/inventory/book/update/{id}": {
+        "/book-store/inventory/book/update/{id}": {
             "put": {
                 "description": "Put all mandatory parameter",
                 "consumes": [
@@ -207,9 +199,9 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "default": "guest",
-                        "description": "guest",
-                        "name": "X-Username",
+                        "default": "token",
+                        "description": "token",
+                        "name": "X-Token",
                         "in": "header",
                         "required": true
                     },
@@ -237,6 +229,82 @@
                         "name": "id",
                         "in": "path",
                         "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/book-store/member/user/create": {
+            "post": {
+                "description": "Put all mandatory parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "member-controller"
+                ],
+                "summary": "Member",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "EN",
+                        "description": "EN",
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "UserReq",
+                        "name": "BookDto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/member.UserReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/book-store/member/user/login": {
+            "post": {
+                "description": "Put all mandatory parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "member-controller"
+                ],
+                "summary": "Member",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "EN",
+                        "description": "EN",
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "UserReq",
+                        "name": "BookDto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/member.UserReq"
+                        }
                     }
                 ],
                 "responses": {
@@ -317,6 +385,21 @@
                     "type": "integer"
                 },
                 "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "member.UserReq": {
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ],
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "username": {
                     "type": "string"
                 }
             }

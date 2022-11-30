@@ -12,14 +12,14 @@ import (
 // @Tags inventory-controller
 // @Summary Inventory
 // @Description Put all mandatory parameter
-// @Param X-Username header string true "guest" default(guest)
+// @Param X-Token header string true "token" default(token)
 // @Param Accept-Language header string true "EN" default(EN)
 // @Param BookDto body inventory.BookReq true "BookRequest"
 // @Param id path string true "objectId"
 // @Accept json
 // @Produce json
 // @Success 200
-// @Router /inventory/book/update/{id} [put]
+// @Router /book-store/inventory/book/update/{id} [put]
 func (c *Controller) UpdateBook(ec echo.Context) error {
 	var (
 		ctx     = context.Background()

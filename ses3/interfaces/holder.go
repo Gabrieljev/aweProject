@@ -3,6 +3,7 @@ package interfaces
 
 import (
 	"github.com/geb/aweproj/ses3/interfaces/inventory"
+	"github.com/geb/aweproj/ses3/interfaces/member"
 	"go.uber.org/dig"
 
 	"github.com/geb/aweproj/ses3/interfaces/healthcheck"
@@ -19,6 +20,10 @@ type (
 		// - Inventory-view-service-start
 		InventoryViewService inventory.ViewService
 		// - Inventory-view-service-end
+
+		// - member-view-service-start
+		MemberViewService member.ViewService
+		// - member-view-service-end
 
 		// interfaces-view-service-end
 	}

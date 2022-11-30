@@ -11,7 +11,6 @@ import (
 // @Tags healthcheck-controller
 // @Summary Healthcheck
 // @Description Put all mandatory parameter
-// @Param X-Username header string true "guest" default(guest)
 // @Param Accept-Language header string true "EN" default(EN)
 // @Accept json
 // @Produce json
