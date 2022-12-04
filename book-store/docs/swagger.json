@@ -1,0 +1,436 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "{{.Description}}",
+        "title": "{{.Title}}",
+        "contact": {},
+        "license": {},
+        "version": "{{.Version}}"
+    },
+    "host": "{{.Host}}",
+    "basePath": "{{.BasePath}}",
+    "paths": {
+        "/application/health": {
+            "get": {
+                "description": "Put all mandatory parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "healthcheck-controller"
+                ],
+                "summary": "Healthcheck",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "EN",
+                        "description": "EN",
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/healthcheck.CheckResponseDto"
+                        }
+                    }
+                }
+            }
+        },
+        "/book-store/inventory/book/bulk/create": {
+            "post": {
+                "description": "Put all mandatory parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "inventory-controller"
+                ],
+                "summary": "Inventory",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "token",
+                        "description": "token",
+                        "name": "X-Token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "EN",
+                        "description": "EN",
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "BulkBookRequest",
+                        "name": "BookDto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/inventory.BookBulkReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/book-store/inventory/book/delete/{id}": {
+            "delete": {
+                "description": "Put all mandatory parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "inventory-controller"
+                ],
+                "summary": "Inventory",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "token",
+                        "description": "token",
+                        "name": "X-Token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "EN",
+                        "description": "EN",
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "objectId",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/book-store/inventory/book/find/{pubId}": {
+            "get": {
+                "description": "Put all mandatory parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "inventory-controller"
+                ],
+                "summary": "Inventory",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "token",
+                        "description": "token",
+                        "name": "X-Token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "EN",
+                        "description": "EN",
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "1",
+                        "description": "publisherId",
+                        "name": "pubId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/inventory.BookDto"
+                        }
+                    }
+                }
+            }
+        },
+        "/book-store/inventory/book/update/{id}": {
+            "put": {
+                "description": "Put all mandatory parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "inventory-controller"
+                ],
+                "summary": "Inventory",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "token",
+                        "description": "token",
+                        "name": "X-Token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "EN",
+                        "description": "EN",
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "BookRequest",
+                        "name": "BookDto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/inventory.BookReq"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "objectId",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/book-store/member/user/create": {
+            "post": {
+                "description": "Put all mandatory parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "member-controller"
+                ],
+                "summary": "Member",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "EN",
+                        "description": "EN",
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "UserReq",
+                        "name": "BookDto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/member.UserReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/book-store/member/user/isUserValid": {
+            "post": {
+                "description": "Put all mandatory parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "member-controller"
+                ],
+                "summary": "Member",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "EN",
+                        "description": "EN",
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "UserReq",
+                        "name": "UserDto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/member.UserReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/book-store/member/user/login": {
+            "post": {
+                "description": "Put all mandatory parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "member-controller"
+                ],
+                "summary": "Member",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "EN",
+                        "description": "EN",
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dto.MandatoryRequestV2Dto": {
+            "type": "object",
+            "required": [
+                "Accept-Language",
+                "X-Username"
+            ],
+            "properties": {
+                "Accept-Language": {
+                    "type": "string"
+                },
+                "X-Username": {
+                    "type": "string"
+                }
+            }
+        },
+        "healthcheck.CheckResponseDto": {
+            "type": "object"
+        },
+        "inventory.BookBulkReq": {
+            "type": "object",
+            "properties": {
+                "books": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/inventory.BookReq"
+                    }
+                }
+            }
+        },
+        "inventory.BookDto": {
+            "type": "object",
+            "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "publisher": {
+                    "type": "object",
+                    "$ref": "#/definitions/inventory.PublisherDto"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "inventory.BookReq": {
+            "type": "object",
+            "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "pubId": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "inventory.PublisherDto": {
+            "type": "object",
+            "properties": {
+                "countryId": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "member.UserReq": {
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ],
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

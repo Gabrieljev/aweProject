@@ -1,0 +1,298 @@
+basePath: '{{.BasePath}}'
+definitions:
+  dto.MandatoryRequestV2Dto:
+    properties:
+      Accept-Language:
+        type: string
+      X-Username:
+        type: string
+    required:
+    - Accept-Language
+    - X-Username
+    type: object
+  healthcheck.CheckResponseDto:
+    type: object
+  inventory.BookBulkReq:
+    properties:
+      books:
+        items:
+          $ref: '#/definitions/inventory.BookReq'
+        type: array
+    type: object
+  inventory.BookDto:
+    properties:
+      author:
+        type: string
+      id:
+        type: integer
+      publisher:
+        $ref: '#/definitions/inventory.PublisherDto'
+        type: object
+      title:
+        type: string
+    type: object
+  inventory.BookReq:
+    properties:
+      author:
+        type: string
+      pubId:
+        type: integer
+      title:
+        type: string
+    type: object
+  inventory.PublisherDto:
+    properties:
+      countryId:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  member.UserReq:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+host: '{{.Host}}'
+info:
+  contact: {}
+  description: '{{.Description}}'
+  license: {}
+  title: '{{.Title}}'
+  version: '{{.Version}}'
+paths:
+  /application/health:
+    get:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/healthcheck.CheckResponseDto'
+            type: object
+      summary: Healthcheck
+      tags:
+      - healthcheck-controller
+  /book-store/inventory/book/bulk/create:
+    post:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: token
+        description: token
+        in: header
+        name: X-Token
+        required: true
+        type: string
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      - description: BulkBookRequest
+        in: body
+        name: BookDto
+        required: true
+        schema:
+          $ref: '#/definitions/inventory.BookBulkReq'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200": {}
+      summary: Inventory
+      tags:
+      - inventory-controller
+  /book-store/inventory/book/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: token
+        description: token
+        in: header
+        name: X-Token
+        required: true
+        type: string
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      - description: objectId
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200": {}
+      summary: Inventory
+      tags:
+      - inventory-controller
+  /book-store/inventory/book/find/{pubId}:
+    get:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: token
+        description: token
+        in: header
+        name: X-Token
+        required: true
+        type: string
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      - default: "1"
+        description: publisherId
+        in: path
+        name: pubId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/inventory.BookDto'
+            type: object
+      summary: Inventory
+      tags:
+      - inventory-controller
+  /book-store/inventory/book/update/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: token
+        description: token
+        in: header
+        name: X-Token
+        required: true
+        type: string
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      - description: BookRequest
+        in: body
+        name: BookDto
+        required: true
+        schema:
+          $ref: '#/definitions/inventory.BookReq'
+          type: object
+      - description: objectId
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200": {}
+      summary: Inventory
+      tags:
+      - inventory-controller
+  /book-store/member/user/create:
+    post:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      - description: UserReq
+        in: body
+        name: BookDto
+        required: true
+        schema:
+          $ref: '#/definitions/member.UserReq'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200": {}
+      summary: Member
+      tags:
+      - member-controller
+  /book-store/member/user/isUserValid:
+    post:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      - description: UserReq
+        in: body
+        name: UserDto
+        required: true
+        schema:
+          $ref: '#/definitions/member.UserReq'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200": {}
+      summary: Member
+      tags:
+      - member-controller
+  /book-store/member/user/login:
+    post:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - default: EN
+        description: EN
+        in: header
+        name: Accept-Language
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200": {}
+      summary: Member
+      tags:
+      - member-controller
+swagger: "2.0"
