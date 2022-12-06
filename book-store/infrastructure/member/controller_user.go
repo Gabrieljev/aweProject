@@ -70,7 +70,7 @@ func (c *Controller) IsUserValid(ec echo.Context) error {
 	ec.SetCookie(cookie)
 
 	ec.Request().AddCookie(cookie)
-	return ec.Redirect(http.StatusFound, "/book-store/inventory/landing_page")
+	return ec.Redirect(http.StatusFound, "/book-store/inventory/book/landing_page")
 
 }
 
