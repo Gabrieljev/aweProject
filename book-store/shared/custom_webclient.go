@@ -19,21 +19,28 @@ type (
 
 	Outbound interface {
 		GetToken() webclient.Client
+		FindBookByPubId() webclient.Client
 		Path() Path
 	}
 
 	Path struct {
-		Token string
+		Token           string
+		FindBookByPubId string
 	}
 
 	outbound struct {
-		getToken webclient.Client
-		path     Path
+		getToken        webclient.Client
+		findBookByPubId webclient.Client
+		path            Path
 	}
 )
 
 func (o outbound) GetToken() webclient.Client {
 	return o.getToken
+}
+
+func (o outbound) FindBookByPubId() webclient.Client {
+	return o.findBookByPubId
 }
 
 func (o outbound) Path() Path {
@@ -57,7 +64,8 @@ func (ch *WebClientHolder) Close() {
 
 func NewOutbound(config *config.EnvConfiguration) (Outbound, error) {
 	outboundData := Path{
-		Token: "http://localhost:9000/book-store/member/user/login",
+		Token:           "http://localhost:9000/book-store/member/user/login",
+		FindBookByPubId: "http://localhost:9000/book-store/inventory/book/find/",
 	}
 
 	duration := time.Second * 3
@@ -65,8 +73,9 @@ func NewOutbound(config *config.EnvConfiguration) (Outbound, error) {
 	customHClient := customHttpClient.NewClientFactory()
 
 	return &outbound{
-		getToken: customHClient.Create(duration),
-		path:     outboundData,
+		getToken:        customHClient.Create(duration),
+		findBookByPubId: customHClient.Create(duration),
+		path:            outboundData,
 	}, nil
 }
 

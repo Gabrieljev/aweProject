@@ -9,7 +9,7 @@ import (
 
 type (
 	ViewService interface {
-		FindBookByPubId(ctx context.Context, pubId int) (books []inventory.BookDto, err error)
+		FindBookByPubId(ctx context.Context, pubId int, token string) (books []inventory.BookDto, err error)
 
 		BulkCreateBook(ctx context.Context, bookReqs []inventory.BookReq) (err error)
 

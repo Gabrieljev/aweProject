@@ -2,6 +2,7 @@ package infrastructure
 
 import (
 	"fmt"
+	"github.com/Masterminds/sprig/v3"
 	"github.com/labstack/echo/v4"
 	swagger "github.com/swaggo/echo-swagger"
 	"html/template"
@@ -45,7 +46,13 @@ func RendererPage(h *Holder) {
 
 	h.SharedHolder.Template.Add("login", template.Must(template.ParseFiles(path+"/shared/renderer/member-renderer/index.html")))
 
-	h.SharedHolder.Template.Add("show_book", template.Must(template.ParseFiles(path+"/shared/renderer/inventory-renderer/find_book/index.html")))
+	tmplfunc := template.
+		New("index.html").
+		Funcs(sprig.FuncMap())
+
+	tmpl, err := tmplfunc.ParseFiles(path + "/shared/renderer/inventory-renderer/find_book/index.html")
+
+	h.SharedHolder.Template.Add("show_book", template.Must(tmpl, err))
 
 	h.SharedHolder.Template.Add("landing_page", template.Must(template.ParseFiles(path+"/shared/renderer/inventory-renderer/landing_page/index.html")))
 
@@ -105,7 +112,7 @@ func CustomMiddlewareAuth() echo.MiddlewareFunc {
 			if err != nil && token1 == "" {
 				return ctx.Redirect(http.StatusTemporaryRedirect, "/book-store/member/user/login")
 			}
-			if token != nil{
+			if token != nil {
 				ctx.Request().Header.Add("X-Token", token.Value)
 			}
 			_ = next(ctx)

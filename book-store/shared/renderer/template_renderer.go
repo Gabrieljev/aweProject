@@ -2,13 +2,14 @@ package renderer
 
 import (
 	"github.com/labstack/echo/v4"
+	"github.com/pkg/errors"
 	"html/template"
 	"io"
-	"github.com/pkg/errors"
 )
 
 type Template struct {
-	Templates map[string]*template.Template
+	Templates    map[string]*template.Template
+	FuncTemplate template.FuncMap
 }
 
 func (t *Template) Render(w io.Writer, html_name string, data interface{}, c echo.Context) error {
@@ -20,8 +21,6 @@ func (t *Template) Render(w io.Writer, html_name string, data interface{}, c ech
 
 }
 
-
 func (tmpl *Template) Add(html_name string, template *template.Template) {
 	tmpl.Templates[html_name] = template
 }
-

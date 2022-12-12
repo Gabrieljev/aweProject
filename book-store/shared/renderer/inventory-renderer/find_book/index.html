@@ -75,61 +75,37 @@
 				</div>
 			</div>
 		</section>
-
 		<section class="features section">
 			<div class="container">
 				<div class="container">
 					<table>
 						<thead>
 						<tr>
-							<th>Column 1</th>
-							<th>Column 2</th>
-							<th>Column 3</th>
-							<th>Column 4</th>
-							<th>Column 5</th>
+							<th>ID</th>
+							<th>Title</th>
+							<th>Author</th>
+							<th>Publisher</th>
 						</tr>
 						</thead>
+						{{range $elem := .dataBook}}
 						<tbody>
 						<tr>
-							<td>Cell 1</td>
-							<td>Cell 2</td>
-							<td>Cell 3</td>
-							<td>Cell 4</td>
-							<td>Cell 5</td>
-						</tr>
-						<tr>
-							<td>Cell 1</td>
-							<td>Cell 2</td>
-							<td>Cell 3</td>
-							<td>Cell 4</td>
-							<td>Cell 5</td>
-						</tr>
-						<tr>
-							<td>Cell 1</td>
-							<td>Cell 2</td>
-							<td>Cell 3</td>
-							<td>Cell 4</td>
-							<td>Cell 5</td>
-						</tr>
-						<tr>
-							<td>Cell 1</td>
-							<td>Cell 2</td>
-							<td>Cell 3</td>
-							<td>Cell 4</td>
-							<td>Cell 5</td>
-						</tr>
-						<tr>
-							<td>Cell 1</td>
-							<td>Cell 2</td>
-							<td>Cell 3</td>
-							<td>Cell 4</td>
-							<td>Cell 5</td>
+							{{$id := get $elem "id" }}
+							{{$title := get $elem "title" }}
+							{{$author := get $elem "author" }}
+							{{$publisher := dig "publisher" "name" "-" $elem }}
+							<td>{{$id}}</td>
+							<td>{{$title}}</td>
+							<td>{{$author}}</td>
+							<td>{{$publisher}}</td>
 						</tr>
 						</tbody>
+						{{end}}
 					</table>
 				</div>
 			</div>
 		</section>
+
 
 		<section class="pricing section">
 			<div class="container-sm">

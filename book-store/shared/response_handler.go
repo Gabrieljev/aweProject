@@ -22,12 +22,7 @@ func GetMandatoryRequestV2(ec echo.Context) dto.MandatoryRequestV2Dto {
 func Response(ec echo.Context, name string, data interface{}, err error) error {
 	if err == nil {
 		successResponse := New(SUCCESS, nil)
-		return ec.Render(successResponse.GetHTTPStatus(), name, &dto.BaseResponseDto{
-			Code:       successResponse.GetCode(),
-			Message:    successResponse.GetMessage(),
-			Data:       data,
-			ServerTime: time.Now().Unix(),
-		})
+		return ec.Render(successResponse.GetHTTPStatus(), name, data)
 	}
 	if s, ok := err.(ErrorStandard); ok {
 		return ec.JSON(s.GetHTTPStatus(), &dto.BaseResponseDto{
