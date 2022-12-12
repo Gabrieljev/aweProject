@@ -9,7 +9,6 @@ import (
 
 type Template struct {
 	Templates    map[string]*template.Template
-	FuncTemplate template.FuncMap
 }
 
 func (t *Template) Render(w io.Writer, html_name string, data interface{}, c echo.Context) error {
